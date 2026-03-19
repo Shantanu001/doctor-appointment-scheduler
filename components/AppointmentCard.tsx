@@ -85,7 +85,7 @@ export default function AppointmentCard({
 
       {appointment.notes && (
         <div className="mb-4 p-3 bg-slate-50 dark:bg-slate-800/30 rounded-xl text-xs text-slate-500 italic border border-slate-100 dark:border-slate-800">
-          "{appointment.notes}"
+          &quot;{appointment.notes}&quot;
         </div>
       )}
 
