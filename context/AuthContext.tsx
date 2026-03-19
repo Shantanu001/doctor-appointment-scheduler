@@ -4,11 +4,13 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 
+import { getCurrentUser, logoutUser, setCurrentUser } from '@/lib/storage';
+
 interface AuthContextType {
   user: any;
   loading: boolean;
   login: (userData: any) => void;
-  logout: () => Promise<void>;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -19,35 +21,23 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const checkUser = async () => {
-      try {
-        const res = await fetch('/api/auth/me');
-        const data = await res.json();
-        if (data.user) {
-          setUser(data.user);
-        }
-      } catch (error) {
-        console.error('Failed to fetch user:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    checkUser();
+    const userSession = getCurrentUser();
+    if (userSession) {
+      setUser(userSession);
+    }
+    setLoading(false);
   }, []);
 
   const login = (userData: any) => {
     setUser(userData);
+    setCurrentUser(userData);
   };
 
-  const logout = async () => {
-    try {
-      await fetch('/api/auth/logout', { method: 'POST' });
-      setUser(null);
-      toast.success('Logged out');
-      router.push('/');
-    } catch (error) {
-      toast.error('Logout failed');
-    }
+  const logout = () => {
+    logoutUser();
+    setUser(null);
+    toast.success('Logged out');
+    router.push('/');
   };
 
   return (

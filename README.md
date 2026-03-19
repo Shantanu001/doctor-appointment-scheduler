@@ -46,4 +46,19 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 - `/components`: Reusable UI components
 - `/models`: Mongoose schemas
 - `/lib`: Utilities (DB, Auth, Validations)
-- `/context`: React Auth Context
+## Deployment
+
+### GitHub Pages (Full Functionality)
+The app has been refactored to use **Browser Storage (localStorage)**, making it fully functional even on static hosts like GitHub Pages!
+
+1.  **Push to `develop` branch**: The GitHub Action will automatically build and deploy.
+2.  **Enable GitHub Pages**: In your Repo Settings > Pages, set the source to **GitHub Actions**.
+
+### Features include:
+- Persistent data across sessions (stored in your browser).
+- Role-based login and registration.
+- Appointment booking with conflict prevention.
+- Dashboard for both Patients and Doctors.
+
+
+

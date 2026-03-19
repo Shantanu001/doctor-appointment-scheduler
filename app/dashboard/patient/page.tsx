@@ -8,28 +8,29 @@ import DoctorCard from '@/components/DoctorCard';
 import BookingModal from '@/components/BookingModal';
 import AppointmentCard from '@/components/AppointmentCard';
 
+import { useAuth } from '@/context/AuthContext';
+import { getAppointmentsByRole, getDoctors } from '@/lib/storage';
+
 export default function PatientDashboard() {
+  const { user } = useAuth();
   const [appointments, setAppointments] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
 
-  const fetchData = useCallback(async () => {
+  const fetchData = useCallback(() => {
+    if (!user) return;
     try {
-      const [appRes, docRes] = await Promise.all([
-        fetch('/api/appointments'),
-        fetch('/api/doctors')
-      ]);
-      const appData = await appRes.json();
-      const docData = await docRes.json();
-      setAppointments(appData.appointments || []);
-      setDoctors(docData.doctors || []);
+      const appData = getAppointmentsByRole('patient', user._id);
+      const docData = getDoctors();
+      setAppointments(appData as any);
+      setDoctors(docData as any);
     } catch (error) {
       console.error('Fetch error:', error);
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     fetchData();
