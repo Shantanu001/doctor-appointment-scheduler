@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import User from '@/models/User';
-import { hashPassword, signToken } from '@/lib/auth';
+import { hashPassword } from '@/lib/auth';
+import { signToken } from '@/lib/jwt';
 import { registerSchema } from '@/lib/validations';
 
 export async function POST(req: Request) {
@@ -31,10 +32,10 @@ export async function POST(req: Request) {
       specialization,
     });
 
-    const token = await signToken({ id: user._id, role: user.role, name: user.name });
+    const token = await signToken({ id: user._id.toString(), role: user.role, name: user.name });
 
     const response = NextResponse.json(
-      { message: 'User registered successfully', user: { id: user._id, name: user.name, email: user.email, role: user.role } },
+      { message: 'User registered successfully', user: { id: user._id.toString(), name: user.name, email: user.email, role: user.role } },
       { status: 201 }
     );
 

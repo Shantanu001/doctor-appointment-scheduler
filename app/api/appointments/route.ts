@@ -49,7 +49,6 @@ export async function POST(req: Request) {
 
     const { doctorId, date, timeSlot, notes } = result.data;
 
-    // Double-booking check (though handled by DB index, good to check explicitly for better error message)
     const existing = await Appointment.findOne({ doctorId, date, timeSlot });
     if (existing) {
       return NextResponse.json({ error: 'This time slot is already booked for this doctor.' }, { status: 400 });

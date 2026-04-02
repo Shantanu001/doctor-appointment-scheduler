@@ -19,7 +19,6 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
       return NextResponse.json({ error: 'Appointment not found' }, { status: 404 });
     }
 
-    // Permission check
     if ((user as any).role === 'patient' && appointment.patientId.toString() !== (user as any).id) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
@@ -27,14 +26,12 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
-    // Doctors can update status
     if ((user as any).role === 'doctor') {
       if (body.status) {
         appointment.status = body.status;
       }
     }
 
-    // Patients can update date/time (reschedule) or notes
     if ((user as any).role === 'patient') {
       if (body.date) appointment.date = body.date;
       if (body.timeSlot) appointment.timeSlot = body.timeSlot;
