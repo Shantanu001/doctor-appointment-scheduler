@@ -20,7 +20,7 @@ export default function Home() {
             <div className="inline-block px-4 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-100 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">
               Welcome back, {user.name}
             </div>
-            
+
             <h1 className="text-5xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
               Manage Your Health <br />
               <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent italic">Right Here</span>
@@ -32,17 +32,17 @@ export default function Home() {
                   <h3 className="text-xl font-bold dark:text-white mb-2">Quick Access</h3>
                   <p className="text-slate-500 dark:text-slate-400 text-sm">Jump straight to your {user.role} dashboard to manage appointments.</p>
                 </div>
-                <Link 
+                <Link
                   href={`/dashboard/${user.role}`}
                   className="mt-6 inline-flex items-center text-blue-600 dark:text-blue-400 font-bold group-hover:gap-2 transition-all"
                 >
-                  Go to Dashboard 
+                  Go to Dashboard
                   <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
                 </Link>
               </div>
 
               <div className="p-6 bg-indigo-600 rounded-3xl shadow-xl shadow-indigo-500/30 text-left text-white flex flex-col justify-between group hover:scale-[1.02] transition-transform">
-                 <div>
+                <div>
                   <h3 className="text-xl font-extrabold mb-2">Quick Status</h3>
                   <p className="text-indigo-100 text-sm">Logged in as a <span className="font-bold underline decoration-2 underline-offset-4 decoration-white/50 capitalize">{user.role}</span>.</p>
                 </div>
@@ -60,24 +60,24 @@ export default function Home() {
             <div className="inline-block px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 text-blue-600 dark:text-blue-400 text-xs font-semibold tracking-wider uppercase mb-4">
               New Era of Healthcare Management
             </div>
-            
+
             <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
               Schedule Your Health <br />
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent italic">With Confidence</span>
             </h1>
-            
+
             <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-400 font-light leading-relaxed">
               A seamless bridge between patients and healthcare professionals. Book appointments in seconds, manage your health records, and connect with top-rated specialists.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
-              <Link 
+              <Link
                 href="/auth/register"
                 className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold text-lg transition-all shadow-xl shadow-blue-500/25 transform hover:-translate-y-1"
               >
                 Get Started for Free
               </Link>
-              <Link 
+              <Link
                 href="/auth/login"
                 className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl font-semibold text-lg transition-all hover:bg-slate-50 dark:hover:bg-slate-700 shadow-sm"
               >
@@ -99,7 +99,7 @@ export default function Home() {
               <h3 className="text-xl font-bold mb-3 dark:text-white">Easy Scheduling</h3>
               <p className="text-slate-600 dark:text-slate-400">Instantly browse doctor availability and book your next appointment without the phone tag.</p>
             </div>
-            
+
             <div className="p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-lg shadow-slate-200/50 dark:shadow-none hover:border-blue-200 transition-colors group">
               <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -109,7 +109,7 @@ export default function Home() {
               <h3 className="text-xl font-bold mb-3 dark:text-white">Expert Doctors</h3>
               <p className="text-slate-600 dark:text-slate-400">Connect with validated medical professionals across a wide spectrum of specializations.</p>
             </div>
-            
+
             <div className="p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-lg shadow-slate-200/50 dark:shadow-none hover:border-blue-200 transition-colors group">
               <div className="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -127,7 +127,7 @@ export default function Home() {
       <footer className="py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-slate-500 text-sm italic">
-            © 2024 NexumCare Healthcare. All rights reserved.
+            © 2026 NexumCare Healthcare. All rights reserved.
           </p>
         </div>
       </footer>

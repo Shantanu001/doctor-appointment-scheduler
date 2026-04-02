@@ -56,4 +56,4 @@ This application is optimized for **Vercel**.
 4. Add `0.0.0.0/0` to your MongoDB Atlas IP Access List to allow Vercel to connect.
 
 ---
-© 2024 **NexumCare Healthcare**. All rights reserved.
+© 2026 **NexumCare Healthcare**. All rights reserved.
