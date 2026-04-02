@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { dbConnect, Appointment } from '@/lib/mockDb';
+import dbConnect from '@/lib/mongodb';
+import Appointment from '@/models/Appointment';
 import { getUser } from '@/lib/getUser';
 
 export async function PUT(req: Request, { params }: { params: { id: string } }) {

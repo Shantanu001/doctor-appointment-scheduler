@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { dbConnect, Appointment } from '@/lib/mockDb';
+import dbConnect from '@/lib/mongodb';
+import Appointment from '@/models/Appointment';
 import { getUser } from '@/lib/getUser';
 import { appointmentSchema } from '@/lib/validations';
 
@@ -48,7 +49,7 @@ export async function POST(req: Request) {
 
     const { doctorId, date, timeSlot, notes } = result.data;
 
-    // Double-booking check (though handled by DB index, good to check explicitly for better error message)
+    // Double-booking check
     const existing = await Appointment.findOne({ doctorId, date, timeSlot });
     if (existing) {
       return NextResponse.json({ error: 'This time slot is already booked for this doctor.' }, { status: 400 });

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { dbConnect, User } from '@/lib/mockDb';
+import dbConnect from '@/lib/mongodb';
+import User from '@/models/User';
 import { comparePassword, signToken } from '@/lib/auth';
 import { loginSchema } from '@/lib/validations';
 
@@ -25,10 +26,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
     }
 
-    const token = await signToken({ id: user._id, role: user.role, name: user.name });
+    const token = await signToken({ id: user._id.toString(), role: user.role, name: user.name });
 
     const response = NextResponse.json(
-      { message: 'Login successful', user: { id: user._id, name: user.name, email: user.email, role: user.role } },
+      { message: 'Login successful', user: { id: user._id.toString(), name: user.name, email: user.email, role: user.role } },
       { status: 200 }
     );
 
