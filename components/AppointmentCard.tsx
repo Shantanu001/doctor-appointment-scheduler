@@ -4,8 +4,6 @@ import { useState } from 'react';
 import StatusBadge from './StatusBadge';
 import toast from 'react-hot-toast';
 
-import { updateAppointmentStatus, cancelAppointment as cancelStorageAppointment } from '@/lib/storage';
-
 export default function AppointmentCard({ 
   appointment, 
   role, 
@@ -19,21 +17,39 @@ export default function AppointmentCard({
   const otherParty = isDoctor ? appointment.patientId : appointment.doctorId;
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const updateStatus = (newStatus: string) => {
+  const updateStatus = async (newStatus: string) => {
     try {
-      updateAppointmentStatus(appointment._id, newStatus);
-      toast.success(`Appointment ${newStatus}`);
-      onRefresh();
+      const res = await fetch(`/api/appointments/${appointment._id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (res.ok) {
+        toast.success(`Appointment ${newStatus}`);
+        onRefresh();
+      } else {
+        const data = await res.json();
+        toast.error(data.error || 'Failed to update status');
+      }
     } catch (error) {
       toast.error('An error occurred');
     }
   };
 
-  const cancelAppointment = () => {
+  const cancelAppointment = async () => {
     try {
-      cancelStorageAppointment(appointment._id);
-      toast.success('Appointment cancelled');
-      onRefresh();
+      const res = await fetch(`/api/appointments/${appointment._id}`, {
+        method: 'DELETE',
+      });
+
+      if (res.ok) {
+        toast.success('Appointment cancelled');
+        onRefresh();
+      } else {
+        const data = await res.json();
+        toast.error(data.error || 'Failed to cancel');
+      }
     } catch (error) {
       toast.error('An error occurred');
     } finally {

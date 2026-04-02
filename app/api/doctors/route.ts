@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { dbConnect, User } from '@/lib/mockDb';
+import dbConnect from '@/lib/mongodb';
+import User from '@/models/User';
 
 export async function GET() {
   try {

@@ -7,18 +7,17 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import AppointmentCard from '@/components/AppointmentCard';
 
 import { useAuth } from '@/context/AuthContext';
-import { getAppointmentsByRole } from '@/lib/storage';
-
 export default function DoctorDashboard() {
   const { user } = useAuth();
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchData = useCallback(() => {
+  const fetchData = useCallback(async () => {
     if (!user) return;
     try {
-      const appData = getAppointmentsByRole('doctor', user._id);
-      setAppointments(appData as any);
+      const res = await fetch('/api/appointments');
+      const data = await res.json();
+      setAppointments(data.appointments || []);
     } catch (error) {
       console.error('Fetch error:', error);
     } finally {

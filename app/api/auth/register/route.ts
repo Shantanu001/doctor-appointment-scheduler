@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { dbConnect, User } from '@/lib/mockDb';
+import dbConnect from '@/lib/mongodb';
+import User from '@/models/User';
 import { hashPassword, signToken } from '@/lib/auth';
 import { registerSchema } from '@/lib/validations';
 

@@ -12,20 +12,25 @@ export default function LoginPage() {
   const { login } = useAuth();
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-      const user = users.find((u: any) => u.email === formData.email && u.password === formData.password);
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-      if (user) {
-        login(user); // AuthContext will handle setCurrentUser
+      const data = await res.json();
+
+      if (res.ok) {
+        login(data.user);
         toast.success('Login successful');
         router.push('/');
       } else {
-        toast.error('Invalid email or password');
+        toast.error(data.error || 'Invalid email or password');
       }
     } catch (error) {
       toast.error('An error occurred');

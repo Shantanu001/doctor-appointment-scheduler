@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAuth } from '@/context/AuthContext';
-import { createAppointment } from '@/lib/storage';
 
 export default function BookingModal({ doctor, isOpen, onClose, onSuccess }: { 
   doctor: any, 
@@ -21,23 +20,32 @@ export default function BookingModal({ doctor, isOpen, onClose, onSuccess }: {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return toast.error('Please login first');
     setIsSubmitting(true);
 
     try {
-      createAppointment({
-        doctorId: doctor, // Store full object for easier display
-        patientId: user,   // Store full object for easier display
-        ...formData
+      const res = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          doctorId: doctor._id,
+          ...formData
+        }),
       });
 
-      toast.success('Appointment booked successfully!');
-      onSuccess();
-      onClose();
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success('Appointment booked successfully!');
+        onSuccess();
+        onClose();
+      } else {
+        toast.error(data.error || 'Failed to book');
+      }
     } catch (error: any) {
-      toast.error(error.message || 'Failed to book');
+      toast.error('An error occurred');
     } finally {
       setIsSubmitting(false);
     }

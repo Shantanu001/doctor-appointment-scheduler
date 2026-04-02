@@ -4,8 +4,6 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 
-import { getCurrentUser, logoutUser, setCurrentUser } from '@/lib/storage';
-
 interface AuthContextType {
   user: any;
   loading: boolean;
@@ -21,23 +19,35 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const userSession = getCurrentUser();
-    if (userSession) {
-      setUser(userSession);
-    }
-    setLoading(false);
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('/api/auth/me');
+        const data = await res.json();
+        if (data.user) {
+          setUser(data.user);
+        }
+      } catch (error) {
+        console.error('Auth check failed:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAuth();
   }, []);
 
   const login = (userData: any) => {
     setUser(userData);
-    setCurrentUser(userData);
   };
 
-  const logout = () => {
-    logoutUser();
-    setUser(null);
-    toast.success('Logged out');
-    router.push('/');
+  const logout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      setUser(null);
+      toast.success('Logged out');
+      router.push('/');
+    } catch (error) {
+      toast.error('Logout failed');
+    }
   };
 
   return (

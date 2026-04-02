@@ -6,8 +6,6 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import toast from 'react-hot-toast';
 
-import { registerUser } from '@/lib/storage';
-
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -20,17 +18,28 @@ export default function RegisterPage() {
   const { login } = useAuth();
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const newUser = registerUser(formData);
-      login(newUser); // AuthContext handles session
-      toast.success('Account created successfully!');
-      router.push('/');
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        login(data.user);
+        toast.success('Account created successfully!');
+        router.push('/');
+      } else {
+        toast.error(data.error || 'Registration failed');
+      }
     } catch (error: any) {
-      toast.error(error.message || 'Registration failed');
+      toast.error('An error occurred');
     } finally {
       setIsLoading(false);
     }
