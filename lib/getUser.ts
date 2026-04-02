@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { verifyToken } from './auth';
+import { verifyToken } from './jwt';
 
 export async function getUser() {
   const token = cookies().get('token')?.value;

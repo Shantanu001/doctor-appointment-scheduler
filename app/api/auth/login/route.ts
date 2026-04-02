@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import User from '@/models/User';
-import { comparePassword, signToken } from '@/lib/auth';
+import { comparePassword } from '@/lib/auth';
+import { signToken } from '@/lib/jwt';
 import { loginSchema } from '@/lib/validations';
 
 export async function POST(req: Request) {
