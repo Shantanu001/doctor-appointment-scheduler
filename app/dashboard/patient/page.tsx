@@ -53,14 +53,47 @@ export default function PatientDashboard() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Health Overview / Stats Card */}
+            <div className="lg:col-span-3">
+              <div className="p-8 rounded-3xl bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 text-white shadow-2xl shadow-blue-500/30 relative overflow-hidden group border border-white/10 hover:shadow-blue-500/40 transition-all duration-500">
+                <div className="relative z-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+                  <div>
+                    <h2 className="text-3xl font-black mb-2 animate-in slide-in-from-left-4 duration-500">Your Health Hub</h2>
+                    <p className="text-white/85 font-medium max-w-md">Everything you need to manage your personal medical journey in one central place.</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 md:flex gap-4 items-end">
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/10 hover:bg-white/20 transition-all min-w-[120px] transform hover:scale-105 duration-300">
+                      <p className="text-white/60 text-[10px] font-black uppercase tracking-widest mb-1">Bookings</p>
+                      <p className="text-3xl font-black">{appointments.length}</p>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/10 hover:bg-white/20 transition-all min-w-[120px] transform hover:scale-105 duration-300">
+                      <p className="text-white/60 text-[10px] font-black uppercase tracking-widest mb-1">Confirmed</p>
+                      <p className="text-3xl font-black">{appointments.filter((a: any) => a.status === 'confirmed').length}</p>
+                    </div>
+                    <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 opacity-50 hidden lg:block">
+                      <p className="text-white/40 text-[8px] font-black uppercase tracking-tighter mb-1">Patient Role</p>
+                      <div className="w-8 h-8 rounded-full bg-blue-500 animate-pulse" />
+                    </div>
+                  </div>
+                </div>
+                {/* Visual Flair */}
+                <div className="absolute -right-16 -top-16 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000 ease-in-out" />
+                <div className="absolute -left-16 -bottom-16 w-32 h-32 bg-indigo-400/20 rounded-full blur-2xl group-hover:bg-indigo-300/30 transition-all duration-1000" />
+              </div>
+            </div>
+
             {/* Appointments Column */}
             <div className="lg:col-span-2 space-y-6">
-              <h2 className="text-xl font-bold flex items-center gap-2 dark:text-white">
-                <span className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center text-sm">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                </span>
-                Your Appointments
-              </h2>
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-black flex items-center gap-2 dark:text-white group">
+                  <span className="w-10 h-10 rounded-xl bg-blue-600 dark:bg-blue-600 text-white flex items-center justify-center text-lg shadow-lg group-hover:rotate-6 transition-transform">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                  </span>
+                  Your Upcoming Appointments
+                </h2>
+                <div className="h-0.5 flex-grow bg-slate-100 dark:bg-slate-800 mx-4 hidden sm:block" />
+              </div>
 
               {loading ? (
                 <LoadingSpinner />

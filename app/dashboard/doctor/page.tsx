@@ -41,24 +41,49 @@ export default function DoctorDashboard() {
         <Navbar />
         
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-          <div className="mb-10">
-            <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Doctor Dashboard</h1>
-            <p className="text-slate-500 mt-1">Overview of your patient appointments and requests.</p>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter mb-2">Doctor's Command Center</h1>
+              <p className="text-slate-500 dark:text-slate-400 font-medium">Welcome back, Dr. {user?.name}. You have {stats.pending} pending requests that need your immediate attention.</p>
+            </div>
+            <div className="hidden lg:flex items-center gap-4 bg-white dark:bg-slate-900 p-2 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black">DR</div>
+              <div className="pr-4 leading-none">
+                <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Medical Board</p>
+                <p className="text-sm font-bold dark:text-white">Active Status</p>
+              </div>
+            </div>
           </div>
 
-          {/* Stats Bento Box */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Total Requests</p>
-              <p className="text-4xl font-black text-slate-900 dark:text-white">{stats.total}</p>
+          {/* Premium Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div className="relative p-8 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/40 dark:shadow-none overflow-hidden group">
+              <div className="relative z-10">
+                <p className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-[0.2em] mb-4">Total Patient Requests</p>
+                <p className="text-6xl font-black text-slate-900 dark:text-white mb-2">{stats.total}</p>
+                <p className="text-sm text-slate-500 font-medium italic">Overview of all time bookings</p>
+              </div>
+              <div className="absolute -right-10 -bottom-10 w-32 h-32 bg-blue-50 dark:bg-blue-900/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
             </div>
-            <div className="p-6 bg-amber-50 dark:bg-amber-900/10 rounded-2xl border border-amber-100 dark:border-amber-900/30 shadow-sm">
-              <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-1">Pending Approval</p>
-              <p className="text-4xl font-black text-amber-600 dark:text-amber-500">{stats.pending}</p>
+
+            <div className="relative p-8 bg-amber-500 rounded-[2.5rem] shadow-xl shadow-amber-500/30 overflow-hidden text-white group hover:scale-[1.02] transition-transform">
+              <div className="relative z-10">
+                <p className="text-[10px] font-black text-amber-100 uppercase tracking-[0.2em] mb-4">Awaiting Decision</p>
+                <p className="text-6xl font-black mb-2">{stats.pending}</p>
+                <p className="text-sm text-amber-100 font-medium">Requires approval or rejection</p>
+              </div>
+              <div className="absolute top-4 right-8 opacity-20 transform rotate-12 transition-transform group-hover:rotate-45">
+                 <svg className="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              </div>
             </div>
-            <div className="p-6 bg-emerald-50 dark:bg-emerald-900/10 rounded-2xl border border-emerald-100 dark:border-emerald-900/30 shadow-sm">
-              <p className="text-xs font-bold text-emerald-500 uppercase tracking-widest mb-1">Confirmed Today</p>
-              <p className="text-4xl font-black text-emerald-600 dark:text-emerald-500">{stats.confirmed}</p>
+
+            <div className="relative p-8 bg-indigo-600 rounded-[2.5rem] shadow-xl shadow-indigo-600/30 overflow-hidden text-white group hover:scale-[1.02] transition-transform">
+              <div className="relative z-10">
+                <p className="text-[10px] font-black text-indigo-100 uppercase tracking-[0.2em] mb-4">Confirmed Schedules</p>
+                <p className="text-6xl font-black mb-2">{stats.confirmed}</p>
+                <p className="text-sm text-indigo-100 font-medium italic">Active medical appointments</p>
+              </div>
+               <div className="absolute -left-10 -top-10 w-32 h-32 bg-white/10 rounded-full blur-3xl" />
             </div>
           </div>
 

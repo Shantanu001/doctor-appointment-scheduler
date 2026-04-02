@@ -1,64 +1,59 @@
-# DocSchedule - Doctor Appointment Scheduler
+# NexumCare - Premium Doctor Scheduling Platform
 
-A premium full-stack web application built with Next.js 14, MongoDB, and Tailwind CSS.
+A high-end, production-ready full-stack medical appointment scheduler built with **Next.js 14**, **MongoDB (Mongoose)**, and **Tailwind CSS**.
 
-## Features
-- **Role-based Authentication**: Secure login and registration for Patients and Doctors.
-- **Patient Dashboard**: Discover doctors by specialization and book appointments with real-time double-booking prevention.
-- **Doctor Dashboard**: Manage incoming requests, view patient details, and update appointment statuses (Confirm/Reject).
-- **Modern UI**: Glassmorphism, smooth animations, and responsive design.
-- **Secure**: Password hashing with bcrypt, JWT authentication via HTTP-only cookies, and Zod input validation.
+## ✨ Features
+- **Modern Rebranded UI**: Powered by the **NexumCare** design system with glassmorphism and smooth animations.
+- **Role-based Authentication**: Secure JWT-powered sessions (Edge-compatible) for Patients and Doctors.
+- **Patient Journey**: Discover medical specialists, book slots with real-time double-booking prevention, and manage upcoming visits.
+- **Doctor Command Center**: Approve or Reject requests, track patient history, and manage daily agendas.
+- **Edge Runtime Support**: Optimized Middleware for fast, server-side authentication checks.
+- **Secure Architecture**: Password hashing (BCRYPT), HTTP-only cookies, and Zod schema validation.
 
-## Tech Stack
-- **Frontend**: Next.js 14 (App Router), React, Tailwind CSS, Lucide (via SVG icons)
-- **Backend**: Next.js API Routes, Mongoose (MongoDB)
-- **Auth**: JWT, bcryptjs, Middleware
+## 🛠 Tech Stack
+- **Frontend**: Next.js 14 (App Router), React 18, Tailwind CSS
+- **Backend**: Next.js API Routes (Node.js & Edge Runtime)
+- **Database**: MongoDB Atlas via Mongoose
+- **Security**: JWT (jose), bcryptjs, Middleware
 - **Validation**: Zod
-- **Notifications**: React Hot Toast
+- **UX**: React Hot Toast, Custom Dashboards
 
-## Getting Started
+## 🚀 Getting Started
 
 ### 1. Prerequisites
 - Node.js 18+
-- MongoDB instance (Local or Atlas)
+- MongoDB Atlas Cluster (or local instance)
 
 ### 2. Environment Variables
 Create a `.env.local` file in the root:
 ```env
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
+MONGODB_URI=mongodb+srv://... (Your Connection String)
+JWT_SECRET=your_secure_secret_key
 NODE_ENV=development
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-### 3. Installation
+### 3. Installation & Setup
 ```bash
 npm install
-```
-
-### 4. Run Development Server
-```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) to view the app.
+Open [http://localhost:3000](http://localhost:3000) to experience **NexumCare**.
 
-## Project Structure
-- `/app`: Next.js App Router (Pages & API)
-- `/components`: Reusable UI components
-- `/models`: Mongoose schemas
-- `/lib`: Utilities (DB, Auth, Validations)
-## Deployment
+## 📁 Project Structure
+- `/app`: Next.js App Router (Public/Auth/Dashboard Pages & API)
+- `/components`: Premium UI components & Dashboards
+- `/models`: Mongoose schemas (User, Appointment)
+- `/lib`: Edge-compatible JWT logic, Auth utilities, & MongoDB connection logic
+- `/context`: Global Auth state management
 
-### GitHub Pages (Full Functionality)
-The app has been refactored to use **Browser Storage (localStorage)**, making it fully functional even on static hosts like GitHub Pages!
+## 🌐 Deployment
+This application is optimized for **Vercel**. 
 
-1.  **Push to `develop` branch**: The GitHub Action will automatically build and deploy.
-2.  **Enable GitHub Pages**: In your Repo Settings > Pages, set the source to **GitHub Actions**.
+1. Push your code to GitHub.
+2. Link your repository in the Vercel dashboard.
+3. Add your `MONGODB_URI` and `JWT_SECRET` in the Vercel Project Settings.
+4. Add `0.0.0.0/0` to your MongoDB Atlas IP Access List to allow Vercel to connect.
 
-### Features include:
-- Persistent data across sessions (stored in your browser).
-- Role-based login and registration.
-- Appointment booking with conflict prevention.
-- Dashboard for both Patients and Doctors.
-
-
-
+---
+© 2024 **NexumCare Healthcare**. All rights reserved.
