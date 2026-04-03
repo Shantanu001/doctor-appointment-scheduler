@@ -43,7 +43,7 @@ export default function DoctorDashboard() {
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
             <div className="max-w-2xl">
-              <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter mb-2">Doctor's Command Center</h1>
+              <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter mb-2">Doctor&apos;s Command Center</h1>
               <p className="text-slate-500 dark:text-slate-400 font-medium">Welcome back, Dr. {user?.name}. You have {stats.pending} pending requests that need your immediate attention.</p>
             </div>
             <div className="hidden lg:flex items-center gap-4 bg-white dark:bg-slate-900 p-2 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
