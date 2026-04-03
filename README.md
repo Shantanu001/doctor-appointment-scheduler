@@ -1,9 +1,9 @@
-# NexumCare - Premium Doctor Scheduling Platform
+# VyrloConnect - Premium Doctor Scheduling Platform
 
 A high-end, production-ready full-stack medical appointment scheduler built with **Next.js 14**, **MongoDB (Mongoose)**, and **Tailwind CSS**.
 
 ## ✨ Features
-- **Modern Rebranded UI**: Powered by the **NexumCare** design system with glassmorphism and smooth animations.
+- **Modern Rebranded UI**: Powered by the **VyrloConnect** design system with glassmorphism and smooth animations.
 - **Role-based Authentication**: Secure JWT-powered sessions (Edge-compatible) for Patients and Doctors.
 - **Patient Journey**: Discover medical specialists, book slots with real-time double-booking prevention, and manage upcoming visits.
 - **Doctor Command Center**: Approve or Reject requests, track patient history, and manage daily agendas.
@@ -38,7 +38,7 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 npm install
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) to experience **NexumCare**.
+Open [http://localhost:3000](http://localhost:3000) to experience **VyrloConnect**.
 
 ## 📁 Project Structure
 - `/app`: Next.js App Router (Public/Auth/Dashboard Pages & API)
@@ -56,4 +56,4 @@ This application is optimized for **Vercel**.
 4. Add `0.0.0.0/0` to your MongoDB Atlas IP Access List to allow Vercel to connect.
 
 ---
-© 2026 **NexumCare Healthcare**. All rights reserved.
+© 2026 **VyrloConnect Healthcare**. All rights reserved.

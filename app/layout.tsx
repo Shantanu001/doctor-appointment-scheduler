@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "NexumCare | Premium Doctor Scheduling",
+  title: "VyrloConnect | Premium Doctor Scheduling",
   description: "Book and manage medical appointments with ease.",
 };
 

@@ -127,7 +127,7 @@ export default function Home() {
       <footer className="py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-slate-500 text-sm italic">
-            © 2026 NexumCare Healthcare. All rights reserved.
+            © 2026 VyrloConnect Healthcare. All rights reserved.
           </p>
         </div>
       </footer>

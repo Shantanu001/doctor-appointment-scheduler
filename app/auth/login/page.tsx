@@ -45,7 +45,7 @@ export default function LoginPage() {
         <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800">
           <div className="text-center mb-8">
             <Link href="/" className="text-3xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent italic">
-              NexumCare
+              VyrloConnect
             </Link>
             <h2 className="mt-6 text-2xl font-bold text-slate-900 dark:text-white">Welcome Back</h2>
             <p className="text-slate-500 text-sm mt-2">Please sign in to your health dashboard</p>
